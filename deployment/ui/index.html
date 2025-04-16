@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Billing Denial Assistant</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <!-- Meta tags for accessibility -->
+    <meta name="description" content="Medical Billing Denial Assistant - AI-powered tool for resolving medical billing denials">
+    <meta name="theme-color" content="#0078d4">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="img/logo.png" alt="Medical Billing Denial Assistant Logo">
+                <h1>Medical Billing Denial Assistant</h1>
+            </div>
+            <div class="user-controls">
+                <button id="settings-btn" aria-label="Settings">
+                    <i class="fas fa-cog"></i>
+                </button>
+                <button id="help-btn" aria-label="Help">
+                    <i class="fas fa-question-circle"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <main>
+        <div class="container">
+            <!-- Sidebar for session information and documents -->
+            <aside class="sidebar">
+                <div class="session-info">
+                    <h2>Session Information</h2>
+                    <div id="session-id">Session ID: <span>-</span></div>
+                    <div id="session-started">Started: <span>-</span></div>
+                </div>
+                
+                <div class="document-section">
+                    <h2>Documents</h2>
+                    <div class="document-upload">
+                        <label for="document-upload-input" class="upload-btn">
+                            <i class="fas fa-upload"></i> Upload Document
+                        </label>
+                        <input type="file" id="document-upload-input" accept=".pdf,.jpg,.jpeg,.png" multiple>
+                    </div>
+                    <div class="document-type-selector">
+                        <select id="document-type">
+                            <option value="cms1500">CMS-1500 Form</option>
+                            <option value="eob">Explanation of Benefits</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <ul id="document-list" class="document-list">
+                        <!-- Document items will be added here dynamically -->
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Main chat area -->
+            <section class="chat-area">
+                <div id="conversation-container" class="conversation-container">
+                    <!-- Welcome message -->
+                    <div class="message system-message">
+                        <div class="message-content">
+                            <p>Welcome to the Medical Billing Denial Assistant. I can help you analyze claim denials and provide remediation steps. You can upload relevant documents like CMS-1500 forms or EOBs to assist in the analysis.</p>
+                        </div>
+                    </div>
+                    <!-- Conversation messages will be added here dynamically -->
+                </div>
+                
+                <!-- Input area for user messages -->
+                <div class="input-container">
+                    <div class="input-wrapper">
+                        <textarea id="user-input" placeholder="Type your message here..." rows="1" aria-label="Type your message here"></textarea>
+                        <button id="send-btn" aria-label="Send message">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                    <div class="input-tools">
+                        <button id="clear-btn" class="tool-btn" aria-label="Clear conversation">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                        <button id="export-btn" class="tool-btn" aria-label="Export conversation">
+                            <i class="fas fa-download"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Settings</h2>
+                <button class="close-btn" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-group">
+                    <h3>Appearance</h3>
+                    <div class="setting-item">
+                        <label for="theme-selector">Theme:</label>
+                        <select id="theme-selector">
+                            <option value="light">Light</option>
+                            <option value="dark">Dark</option>
+                            <option value="system">System Default</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <label for="font-size">Font Size:</label>
+                        <select id="font-size">
+                            <option value="small">Small</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="large">Large</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="setting-group">
+                    <h3>API Configuration</h3>
+                    <div class="setting-item">
+                        <label for="api-endpoint">API Endpoint:</label>
+                        <input type="text" id="api-endpoint" placeholder="https://your-endpoint.com/api">
+                    </div>
+                    <div class="setting-item">
+                        <label for="api-key">API Key:</label>
+                        <input type="password" id="api-key" placeholder="Your API Key">
+                        <button id="show-key-btn" class="toggle-btn" aria-label="Show API key">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="setting-group">
+                    <h3>Session</h3>
+                    <div class="setting-item">
+                        <button id="new-session-btn" class="primary-btn">Start New Session</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="save-settings-btn" class="primary-btn">Save Changes</button>
+                <button class="secondary-btn cancel-btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Help Modal -->
+    <div id="help-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Help & Information</h2>
+                <button class="close-btn" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="help-section">
+                    <h3>Getting Started</h3>
+                    <p>The Medical Billing Denial Assistant helps you analyze and resolve medical billing denials. Here's how to use it:</p>
+                    <ol>
+                        <li><strong>Upload Documents:</strong> Upload relevant CMS-1500 forms or EOB documents using the upload button in the sidebar.</li>
+                        <li><strong>Describe the Denial:</strong> Type a description of the denial issue you're experiencing.</li>
+                        <li><strong>Review Analysis:</strong> The assistant will analyze the information and provide detailed remediation steps.</li>
+                        <li><strong>Ask Follow-up Questions:</strong> You can ask follow-up questions to get more specific guidance.</li>
+                    </ol>
+                </div>
+                <div class="help-section">
+                    <h3>Document Types</h3>
+                    <p>The assistant can process the following document types:</p>
+                    <ul>
+                        <li><strong>CMS-1500 Forms:</strong> Standard claim forms used by healthcare providers.</li>
+                        <li><strong>Explanation of Benefits (EOB):</strong> Documents from insurance companies explaining claim processing.</li>
+                        <li><strong>Other:</strong> Additional supporting documentation related to the claim.</li>
+                    </ul>
+                </div>
+                <div class="help-section">
+                    <h3>Tips for Best Results</h3>
+                    <ul>
+                        <li>Upload clear, high-quality document scans or images.</li>
+                        <li>Provide specific details about the denial code or reason if available.</li>
+                        <li>Include all relevant documentation for the same claim.</li>
+                        <li>Keep conversations focused on one specific denial at a time.</li>
+                    </ul>
+                </div>
+                <div class="help-section">
+                    <h3>Privacy & Security</h3>
+                    <p>All communications with the assistant are encrypted and handled according to HIPAA requirements. Documents are processed securely and are not permanently stored after your session ends.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="secondary-btn close-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-spinner"></div>
+        <p class="loading-message">Processing...</p>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="js/api-client.js"></script>
+    <script src="js/document-handler.js"></script>
+    <script src="js/conversation.js"></script>
+    <script src="js/ui-controller.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

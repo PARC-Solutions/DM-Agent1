@@ -1,0 +1,59 @@
+[
+  {
+    "scenario_id": "denial_code_CO16_N290",
+    "scenario_type": "denial_classification",
+    "user_query": "I have a claim denied with codes CO-16 and N290. What do these codes mean?",
+    "expected_response": "CO-16 indicates 'Claim/service lacks information or has submission/billing error(s).' This is a CARC (Claim Adjustment Reason Code) that usually means there's missing or incorrect information on your claim. N290 is a RARC (Remittance Advice Remark Code) that means 'Missing/incomplete/invalid rendering provider primary identifier.' This typically means the provider's NPI (National Provider Identifier) is missing, invalid, or not properly included on the claim form.",
+    "context": {},
+    "evaluation_criteria": {
+      "expected_codes": ["CO-16", "N290"],
+      "expected_descriptions": {
+        "CO-16": "Claim/service lacks information or has submission/billing error(s).",
+        "N290": "Missing/incomplete/invalid rendering provider primary identifier."
+      },
+      "required_information": ["CARC", "RARC", "NPI", "National Provider Identifier", "missing information"]
+    }
+  },
+  {
+    "scenario_id": "remediation_provider_npi",
+    "scenario_type": "remediation_advice",
+    "user_query": "How do I fix a claim denied with CO-16 and N290 regarding provider NPI?",
+    "expected_response": "To fix this denial, you should: 1) Verify the rendering provider's NPI is correct, 2) Ensure the NPI is entered in the correct field (Box 24J of the CMS-1500 form), 3) Confirm the provider is properly enrolled with the payer, 4) Resubmit the claim with the corrected NPI information, 5) If the NPI is correct, contact the payer to determine if there are enrollment or credentialing issues.",
+    "context": {
+      "carc_codes": ["CO-16"],
+      "rarc_codes": ["N290"],
+      "denial_type": "information_error"
+    },
+    "evaluation_criteria": {
+      "denial_context": {
+        "codes": ["CO-16", "N290"],
+        "issue": "missing provider NPI"
+      },
+      "expected_remediation": "Verify the rendering provider's NPI is correct. Ensure the NPI is entered in the correct field on the CMS-1500 form. Confirm the provider is properly enrolled with the payer. Resubmit the claim with the corrected NPI information. Contact the payer to determine if there are enrollment issues.",
+      "procedural_requirements": ["verify NPI", "correct field placement", "check enrollment", "resubmit claim"]
+    }
+  },
+  {
+    "scenario_id": "complex_denial_medical_necessity",
+    "scenario_type": "complex_denial",
+    "user_query": "I have a denial for a cardiology consultation with codes CO-50 and N115. The patient had chest pain but the claim was denied as not medically necessary. How do I appeal this?",
+    "expected_response": "This claim was denied for medical necessity issues. CO-50 means 'These are non-covered services because this is not deemed a medical necessity by the payer.' N115 indicates 'This decision was based on a Local Coverage Determination (LCD).' To appeal: 1) Review the specific LCD policy for cardiology consultations, 2) Gather clinical documentation supporting medical necessity, including detailed symptoms, 3) Have the provider document severity of chest pain and risk factors, 4) Write an appeal letter explaining why the consultation was medically necessary, 5) Include relevant clinical guidelines, 6) Submit the appeal with all supporting documentation within the timeframe allowed by the payer.",
+    "context": {
+      "carc_codes": ["CO-50"],
+      "rarc_codes": ["N115"],
+      "denial_type": "medical_necessity",
+      "service_code": "99243",
+      "diagnosis_code": "R07.9",
+      "service_description": "Cardiology consultation"
+    },
+    "evaluation_criteria": {
+      "denial_context": {
+        "codes": ["CO-50", "N115"],
+        "issue": "medical necessity"
+      },
+      "expected_remediation": "Review the specific LCD policy. Gather clinical documentation supporting medical necessity. Have the provider document severity of chest pain and risk factors. Write an appeal letter. Include relevant clinical guidelines. Submit the appeal with all supporting documentation within the timeframe allowed by the payer.",
+      "procedural_requirements": ["review LCD", "clinical documentation", "appeal letter", "supporting documentation", "timely submission"],
+      "required_information": ["medical necessity", "Local Coverage Determination", "LCD", "appeal", "clinical documentation", "guidelines"]
+    }
+  }
+]
