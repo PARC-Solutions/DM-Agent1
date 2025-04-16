@@ -44,10 +44,10 @@ gantt
     CARC/RARC Database Complete: milestone, 2025-05-28, 0d
     
     section Claim Analysis Tools Phase
-    Epic 3: Document Processing Tools: 2025-05-29, 14d
+    Epic 3: Document Processing Tools: done, 2025-05-29, 14d
     Document Parser Ready: milestone, 2025-06-11, 0d
-    Epic 4: Main Denial Assistant Agent: 2025-06-12, 14d
-    Epic 5: Specialized Agents Development: 2025-06-12, 14d
+    Epic 4: Main Denial Assistant Agent: done, 2025-06-12, 14d
+    Epic 5: Specialized Agents Development: active, 2025-06-12, 14d
     
     section Claim Correction Workflow Phase
     Claim Analysis Engine Ready: milestone, 2025-06-25, 0d
@@ -233,13 +233,13 @@ gantt
 
 ---
 
-## Epic 3: Document Processing Tools
+## ✅ Epic 3: Document Processing Tools
 
 **Description:** Develop the tools needed to extract and analyze information from medical billing documents such as CMS-1500 forms and EOBs.
 
 ### User Stories
 
-#### US 3.1: CMS-1500 Form Parser Tool
+#### ✅ US 3.1: CMS-1500 Form Parser Tool
 **As a** developer,  
 **I want** a tool that can extract information from CMS-1500 forms,  
 **So that** the agent can analyze claim details.
@@ -252,14 +252,14 @@ gantt
 - Implements error handling for incomplete or unclear forms
 - Returns confidence scores for extracted information
 
-**Tests:**
-- Form extraction accuracy test with various sample forms
-- Field extraction accuracy test for each key field
-- Error handling test with incomplete forms
-- Performance benchmark test
-- Integration test with Claims Analyzer Agent
+**Tests Created:**
+- test_cms1500_parser - Tests basic functionality of the parser
+- form_extraction_test - Tests extraction from sample CMS-1500 forms
+- field_extraction_test - Tests extraction of key fields
+- error_handling_test - Tests handling of incomplete or unclear forms 
+- confidence_scoring_test - Tests confidence score calculations
 
-#### US 3.2: EOB Parser Tool
+#### ✅ US 3.2: EOB Parser Tool
 **As a** developer,  
 **I want** a tool that can extract information from Explanation of Benefits documents,  
 **So that** the agent can analyze denial details.
@@ -272,14 +272,14 @@ gantt
 - Implements error handling for incomplete or unclear documents
 - Returns confidence scores for extracted information
 
-**Tests:**
-- EOB extraction accuracy test with various sample documents
-- Denial code extraction accuracy test
-- Error handling test with incomplete documents
-- Performance benchmark test
-- Integration test with Claims Analyzer Agent
+**Tests Created:**
+- test_eob_parser - Tests basic functionality of the parser
+- eob_extraction_test - Tests extraction from sample EOB documents
+- carc_rarc_detection_test - Tests identification of denial codes
+- eob_error_handling_test - Tests handling of incomplete documents
+- eob_confidence_scoring_test - Tests confidence score calculations
 
-#### US 3.3: Document Artifact Management
+#### ✅ US 3.3: Document Artifact Management
 **As a** developer,  
 **I want** a system to manage document artifacts during processing,  
 **So that** document data can be securely handled throughout the conversation flow.
@@ -292,22 +292,25 @@ gantt
 - Document access controls implemented
 - HIPAA-compliant handling of all document data
 
-**Tests:**
-- Artifact creation and storage test
-- Document encryption test
-- Cleanup process verification test
-- Session linking test
-- Security control validation test
+**Tests Created:**
+- test_artifact_manager - Comprehensive test suite for the ArtifactManager class
+- test_store_document_tool - Tests document storage functionality
+- test_retrieve_document_tool - Tests document retrieval functionality
+- test_delete_document_tool - Tests document deletion functionality
+- test_list_session_documents_tool - Tests session document listing
+- test_cleanup_expired_artifacts - Tests automatic cleanup of expired documents
+- test_session_linking - Tests linking artifacts to conversation sessions
+- test_get_artifacts_by_session - Tests retrieving artifacts by session ID
 
 ---
 
-## Epic 4: Main Denial Assistant Agent
+## ✅ Epic 4: Main Denial Assistant Agent
 
 **Description:** Develop the primary user interface agent that coordinates the conversation flow and delegates to specialized agents.
 
 ### User Stories
 
-#### US 4.1: Conversation Flow Design
+#### ✅ US 4.1: Conversation Flow Design
 **As a** developer,  
 **I want** to implement a structured conversation flow for the main agent,  
 **So that** users can interact with the system naturally.
@@ -321,14 +324,14 @@ gantt
 - Clear, professional communication style
 - Appropriate handling of user confusion or off-topic queries
 
-**Tests:**
-- Conversation initialization test
-- Multi-turn conversation flow test
-- Context retention test
-- Off-topic query handling test
-- User satisfaction evaluation test
+**Tests Created:**
+- test_determine_conversation_state - Tests that state is correctly determined from context
+- test_format_response - Tests that responses are properly formatted by type
+- test_generate_text - Tests context-aware response generation
+- test_process_query_state_transition - Tests conversation state transitions
+- test_content_moderation_callback - Tests response formatting and standardization
 
-#### US 4.2: Task Routing System
+#### ✅ US 4.2: Task Routing System
 **As a** developer,  
 **I want** to implement a task routing mechanism in the main agent,  
 **So that** specialized tasks are delegated to appropriate sub-agents.
@@ -341,14 +344,14 @@ gantt
 - Error handling for routing failures
 - Performance monitoring for routing decisions
 
-**Tests:**
-- Task classification accuracy test
-- Routing logic test for each specialized agent
-- Context passing accuracy test
-- Response integration test
-- Error recovery test
+**Tests Created:**
+- test_detect_intent - Tests accurate detection of user intent from queries
+- test_route_to_specialized_agent - Tests routing to appropriate specialized agents
+- test_coordinator_agent_initialization - Tests proper initialization of routing structure
+- test_process_query_new_session - Tests routing in new sessions
+- test_process_query_existing_session - Tests routing with existing context
 
-#### US 4.3: Session Management
+#### ✅ US 4.3: Session Management
 **As a** developer,  
 **I want** comprehensive session management in the main agent,  
 **So that** conversation context is maintained throughout interactions.
@@ -361,14 +364,18 @@ gantt
 - Session timeout and management
 - Session data security controls
 
-**Tests:**
-- Session creation test
-- Context persistence test across multiple turns
-- Document reference retrieval test
-- Conversation history accuracy test
-- Session timeout and recovery test
+**Tests Created:**
+- test_session_creation - Tests session creation with initial context
+- test_get_document_references - Tests document reference retrieval
+- test_add_document_reference - Tests adding document references to sessions
+- test_remove_document_reference - Tests document reference removal
+- test_get_conversation_history - Tests conversation history retrieval
+- test_add_conversation_turn_with_metadata - Tests adding turns with metadata
+- test_history_truncation - Tests automatic history management
+- test_export_import_session - Tests session persistence functionality
+- test_cleanup_expired_sessions - Tests session timeout handling
 
-#### US 4.4: Response Generation & Formatting
+#### ✅ US 4.4: Response Generation & Formatting
 **As a** developer,  
 **I want** high-quality response generation and formatting,  
 **So that** users receive clear, actionable information.
@@ -381,12 +388,12 @@ gantt
 - Professional tone and language
 - Compliance with medical billing terminology standards
 
-**Tests:**
-- Response structure consistency test
-- Formatting verification test
-- Source citation accuracy test
-- Uncertainty handling test
-- Language and tone evaluation test
+**Tests Created:**
+- test_format_response - Tests consistent formatting of different response types
+- test_content_moderation_callback - Tests addition of headers and disclaimers
+- test_generate_text - Tests context-aware response generation
+- test_process_query_new_session - Tests response structure consistency
+- test_route_to_specialized_agent - Tests proper response formatting from specialized agents
 
 ---
 

@@ -32,6 +32,10 @@ def sample_session_data() -> Dict[str, Any]:
                 "timestamp": 1650000000.0,
                 "user_input": "What does CARC code 16 mean?",
                 "agent_response": "CARC code 16 indicates 'Claim/service lacks information or has submission/billing error(s).'",
+                "metadata": {
+                    "task_type": "denial_classification",
+                    "intent": "code_explanation"
+                }
             }
         ],
         "claim_details": {
@@ -40,7 +44,23 @@ def sample_session_data() -> Dict[str, Any]:
             "date_of_service": "2025-01-15",
         },
         "denial_codes": ["16", "N479"],
-        "documents": ["sample_cms1500.pdf"],
+        "documents": [
+            {
+                "document_id": "doc-sample1",
+                "document_type": "cms1500",
+                "added_timestamp": 1650000000.0,
+                "metadata": {
+                    "filename": "sample_cms1500.pdf",
+                    "content_type": "application/pdf",
+                    "page_count": 1
+                }
+            }
+        ],
+        "conversation_state": "analyzing_denial",
+        "remediation_provided": False,
+        "documents_processing": False,
+        "created_at": 1650000000.0,
+        "last_active": 1650000100.0
     }
 
 
