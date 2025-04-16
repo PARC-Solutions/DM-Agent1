@@ -1,0 +1,103 @@
+{
+  "billing_rule_references": {
+    "coding_references": [
+      "CPT Guidelines", 
+      "NCCI Policy Manual"
+    ], 
+    "medicare_manuals": [
+      "Chapter 1", 
+      "Chapter 4"
+    ], 
+    "coverage_policies": [
+      "LCD L12345", 
+      "NCD 123.45"
+    ]
+  }, 
+  "resolution_strategies": {
+    "bundling": {
+      "general_steps": [
+        "Review coding guidelines", 
+        "Verify services", 
+        "Appeal or correct"
+      ], 
+      "specific_strategies": [
+        "Use appropriate modifiers", 
+        "Separate services if applicable"
+      ], 
+      "documentation_requirements": [
+        "Coding guidelines reference", 
+        "Service documentation"
+      ], 
+      "name": "Bundling Resolution Strategy", 
+      "description": "Steps to resolve denials due to bundling issues"
+    }, 
+    "timely_filing": {
+      "general_steps": [
+        "Verify filing dates", 
+        "Gather proof of timely submission", 
+        "Appeal"
+      ], 
+      "specific_strategies": [
+        "Electronic submission records", 
+        "Certified mail receipts"
+      ], 
+      "documentation_requirements": [
+        "Submission records", 
+        "Payer timely filing policies"
+      ], 
+      "name": "Timely Filing Resolution Strategy", 
+      "description": "Steps to resolve denials due to timely filing issues"
+    }, 
+    "missing_information": {
+      "general_steps": [
+        "Identify missing information", 
+        "Contact patient if needed", 
+        "Resubmit claim"
+      ], 
+      "specific_strategies": [
+        "Review claim for accuracy", 
+        "Check patient demographics"
+      ], 
+      "documentation_requirements": [
+        "Completed forms", 
+        "Updated information"
+      ], 
+      "name": "Missing Information Resolution Strategy", 
+      "description": "Steps to resolve denials due to missing information"
+    }, 
+    "coordination_of_benefits": {
+      "general_steps": [
+        "Verify primary payer", 
+        "Obtain EOB from primary", 
+        "Resubmit to secondary"
+      ], 
+      "specific_strategies": [
+        "Contact patient for insurance verification", 
+        "Request OHI form"
+      ], 
+      "documentation_requirements": [
+        "Primary EOB", 
+        "Patient insurance information"
+      ], 
+      "name": "COB Resolution Strategy", 
+      "description": "Steps to resolve denials due to coordination of benefits issues"
+    }, 
+    "medical_necessity": {
+      "general_steps": [
+        "Review documentation", 
+        "Gather clinical evidence", 
+        "Appeal decision"
+      ], 
+      "specific_strategies": [
+        "Obtain physician statement", 
+        "Include relevant notes"
+      ], 
+      "documentation_requirements": [
+        "Clinical records", 
+        "Physician statement"
+      ], 
+      "name": "Medical Necessity Resolution Strategy", 
+      "description": "Steps to resolve denials due to medical necessity"
+    }
+  }
+}

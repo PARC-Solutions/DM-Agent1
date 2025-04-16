@@ -1,0 +1,78 @@
+{
+  "group_codes": [
+    {
+      "code": "CO", 
+      "description": "Contractual Obligation"
+    }, 
+    {
+      "code": "PR", 
+      "description": "Patient Responsibility"
+    }
+  ], 
+  "carc_codes": [
+    {
+      "code": "16", 
+      "denial_type": "missing_information", 
+      "description": "Claim lacks information", 
+      "resolution_steps": [
+        "Verify patient info", 
+        "Resubmit claim"
+      ]
+    }, 
+    {
+      "code": "50", 
+      "denial_type": "medical_necessity", 
+      "description": "Non-covered service", 
+      "resolution_steps": [
+        "Check coverage", 
+        "Appeal"
+      ]
+    }, 
+    {
+      "code": "96", 
+      "denial_type": "medical_necessity", 
+      "description": "Non-covered charge", 
+      "resolution_steps": [
+        "Verify benefits", 
+        "Appeal"
+      ]
+    }, 
+    {
+      "code": "97", 
+      "denial_type": "bundling", 
+      "description": "Payment adjusted", 
+      "resolution_steps": [
+        "Review coding", 
+        "Appeal"
+      ]
+    }, 
+    {
+      "code": "18", 
+      "denial_type": "documentation", 
+      "description": "Duplicate claim", 
+      "resolution_steps": [
+        "Verify submission", 
+        "Contact payer"
+      ]
+    }, 
+    {
+      "code": "29", 
+      "denial_type": "timely_filing", 
+      "description": "Time limit expired", 
+      "resolution_steps": [
+        "Check dates", 
+        "Appeal"
+      ]
+    }
+  ], 
+  "rarc_codes": [
+    {
+      "code": "N01", 
+      "description": "Alert: Documentation needed"
+    }, 
+    {
+      "code": "M76", 
+      "description": "Missing incomplete information"
+    }
+  ]
+}

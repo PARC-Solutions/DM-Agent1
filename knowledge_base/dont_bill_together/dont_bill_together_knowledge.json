@@ -1,0 +1,33 @@
+{
+  "allowed_modifiers": [
+    "59", 
+    "25", 
+    "91"
+  ], 
+  "code_pairs": {
+    "modifier_allowed": [
+      {
+        "column1_code": "99213", 
+        "column2_code": "99214", 
+        "resolution_guidance": "Use appropriate modifier", 
+        "effective_date": "20250101", 
+        "documentation_requirements": [
+          "Separate services documentation"
+        ], 
+        "modifier_indicator": "1"
+      }
+    ], 
+    "modifier_not_allowed": [
+      {
+        "column1_code": "80061", 
+        "column2_code": "82465", 
+        "resolution_guidance": "These codes represent bundled services", 
+        "effective_date": "20250101", 
+        "documentation_requirements": [
+          "Medical necessity documentation"
+        ], 
+        "modifier_indicator": "0"
+      }
+    ]
+  }
+}

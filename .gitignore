@@ -51,3 +51,4 @@ ENV/
 # Local development settings
 .env
 .env.local
+credentials.json

@@ -1,45 +1,74 @@
-# Template ADK Project
+# Medical Billing Denial Agent
 
-This repository contains a template project for developing AI agents using Google's Agent Development Kit (ADK). It serves as a starting point for creating sophisticated AI agents with flexibility and control.
+This repository contains an AI agent system built using Google's Agent Development Kit (ADK) that helps healthcare providers analyze and resolve medical billing denials. The system processes denial information from various sources, identifies the root causes, and provides actionable remediation steps.
 
 ## What's Included
 
-- **ADK Framework Documentation**: Comprehensive documentation on how to use the Google ADK framework
+- **Multi-Agent System**: A coordinated set of specialized agents for denial management
+- **Knowledge Bases**: Comprehensive databases of CARC/RARC codes and resolution strategies
+- **Document Processing Tools**: Tools to extract information from CMS-1500 forms and EOBs
+- **ADK Framework Documentation**: Comprehensive documentation on the Google ADK framework
 - **ADK Python Library**: Included as a git submodule, providing the official Google ADK implementation
 
 ## Getting Started
 
 1. Clone this repository:
    ```
-   git clone --recursive https://github.com/nabbilkhan/Template-ADK-Project.git
+   git clone --recursive https://github.com/yourusername/medical-billing-denial-agent.git
    ```
 
-2. Install the required dependencies:
+2. Set up your environment:
    ```
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
    pip install -r requirements.txt
    ```
 
-3. Explore the ADK documentation in the `ADK_Framework_Documentation` directory
+3. Configure environment variables:
+   ```
+   cp .env.example .env
+   # Edit .env with your specific configuration
+   ```
 
-## Documentation Structure
+4. Run the development server:
+   ```
+   python run.py
+   ```
 
-- **Getting Started**: Installation guides, quickstart tutorials
-- **Core Concepts**: Understanding agents, tools, sessions, and memory
-- **Tools**: Overview of different tool types (Function tools, Cloud tools, etc.)
-- **Deployment**: Options for deploying your agents
-- **Advanced Topics**: Callbacks, runtime configuration, model integration
-- **Examples**: Sample agent implementations
-- **Testing & Evaluation**: Approaches for testing and evaluating agents
-- **Responsible AI**: Guidelines for building responsible AI agents
+5. For more detailed setup instructions, see the [Development Setup Guide](docs/setup.md)
 
-## Using the ADK
+## System Architecture
 
-The ADK allows you to:
+The Medical Billing Denial Agent uses a multi-agent architecture:
 
-- Define agents directly in code for flexibility and versioning
-- Utilize a rich ecosystem of pre-built tools
-- Create modular multi-agent systems
-- Deploy anywhere - from your laptop to the cloud
+1. **Main Denial Assistant Agent**: Coordinates the conversation flow with users
+2. **Denial Classifier Agent**: Interprets CARC/RARC codes to identify denial reasons
+3. **Claims Analyzer Agent**: Extracts and analyzes information from claim documents
+4. **Remediation Advisor Agent**: Provides actionable steps for denial resolution
+
+The system utilizes knowledge bases for:
+- CARC/RARC codes and descriptions
+- Resolution strategies for different denial types
+- "Don't Bill Together" code compatibility rules
+
+See the [Architecture Documentation](docs/architecture.md) for more details.
+
+## Development
+
+- **Project Roadmap**: See [Roadmap](Medical_Billing_Denial_Agent_Roadmap.md) for implementation timeline
+- **Project Plan**: See [Project Plan](Medical_Billing_Denial_Agent_Project_Plan.md) for technical details
+- **Testing**: Run tests using `pytest tests/`
+- **Code Style**: This project follows PEP 8 guidelines, enforced with Black and Pylint
+
+## Compliance and Security
+
+This system is designed with HIPAA compliance in mind:
+- No PHI (Protected Health Information) is stored permanently
+- All data is encrypted in transit and at rest
+- Comprehensive audit logging
+- Access controls and authentication
+
+For more information, see the [Security Documentation](docs/security.md)
 
 ## License
 
